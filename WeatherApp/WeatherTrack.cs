@@ -11,7 +11,7 @@ namespace WeatherApp
     {
         public double Temp { get; set; }
         public double Wind { get; set; }
-        public double Overcast { get; set; }
+        public string Overcast { get; set; }
         public double Clouds { get; set;}
         public double Humidity { get; set; }
         public void WeatherTracking()
@@ -28,9 +28,9 @@ namespace WeatherApp
             var weatherResponse = client.GetStringAsync(weather).Result;
             this.Temp = double.Parse(JObject.Parse(weatherResponse)["main"]["temp"].ToString());
             this.Humidity = double.Parse(JObject.Parse(weatherResponse)["main"]["humidity"].ToString());
-            // this.Wind = double.Parse(JObject.Parse(weatherResponse)["wind"]["speed"].ToString());
-            this.Overcast = double.Parse(JObject.Parse(weatherResponse)["weather"][0]["description"].ToString());
-            //this.Clouds = double.Parse(JObject.Parse(weatherResponse)["clouds"]["all"].ToString());
+            this.Wind = double.Parse(JObject.Parse(weatherResponse)["wind"]["speed"].ToString());
+            this.Overcast = JObject.Parse(weatherResponse)["weather"][0]["description"].ToString();
+            this.Clouds = double.Parse(JObject.Parse(weatherResponse)["clouds"]["all"].ToString());
 
         }
     }
