@@ -1,12 +1,13 @@
 ﻿using Newtonsoft.Json.Linq;
+using WeatherApp;
 
-var client = new HttpClient(); //http request
-Console.WriteLine("Please Enter your Zip Code");
-var zipCode = Console.ReadLine();
-var APIkey = ;
-var weather = $"https://api.openweathermap.org/data/2.5/weather?zip={zipCode}&appid={APIkey}";
+var weather = new WeatherTrack();
+weather.WeatherTracking();
+Console.WriteLine(weather.Temp);
+Console.WriteLine(weather.Humidity);
+Console.WriteLine(weather.Wind);
+Console.WriteLine(weather.Overcast);
+Console.WriteLine(weather.Clouds);
 
-var weatherResponse = client.GetAsync(weather).Result;
 
-var getWeather = JArray.Parse(weatherResponse.Content.ReadAsStringAsync().Result);
 
